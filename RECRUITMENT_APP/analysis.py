@@ -93,21 +93,6 @@ def get_top_migration_origins(
     )
 
 
-# PATH for migration data Excel file
-migration_path = (
-    r"V:\# Consultancy\Projects\Google\Labor market analysis\03 analysis\Migration flows county to county\county-to-county-2016-2020-ins-outs-nets-gross.xlsx"
-)
-
-# Example usage for Laramie County, Wyoming
-laramie_origins = get_top_migration_origins(
-    excel_path=migration_path,
-    destination_state="Wyoming",
-    destination_county="Laramie County",
-    top_n=50
-)
-
-laramie_origins.head()
-
 
 def analyze_soc_recruitment_origins(
     soc_code,
