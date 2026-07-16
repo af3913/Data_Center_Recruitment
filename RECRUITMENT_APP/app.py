@@ -28,7 +28,8 @@ st.title("Data Center Labor Recruitment Explorer")
 # Paths
 # ============================================================
 
-DATA_FOLDER = Path("data")
+APP_FOLDER = Path(__file__).resolve().parent
+DATA_FOLDER = APP_FOLDER / "data"
 
 OCC_PATH = DATA_FOLDER / "occupation_county.csv"
 SITE_PATH = DATA_FOLDER / "sites.csv"
