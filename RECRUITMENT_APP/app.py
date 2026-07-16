@@ -32,7 +32,7 @@ DATA_FOLDER = Path("data")
 
 OCC_PATH = DATA_FOLDER / "occupation_county.csv"
 SITE_PATH = DATA_FOLDER / "sites.csv"
-MIGRATION_PATH = DATA_FOLDER / "migration_flows.xlsx"
+MIGRATION_PATH = DATA_FOLDER / "migration_flows.csv.gz"
 COUNTY_PARQUET_PATH = DATA_FOLDER / "us_counties_simplified.parquet"
 
 
@@ -106,17 +106,21 @@ def load_counties():
         COUNTY_PARQUET_PATH
     )
 
-@st.cache_data
-def load_migration_origins(
-    destination_state,
-    destination_county,
-    top_n
-):
-    return get_top_migration_origins(
-        excel_path=MIGRATION_PATH,
-        destination_state=destination_state,
-        destination_county=destination_county,
-        top_n=top_n
+@st.cache_data(
+    show_spinner="Loading migration flows..."
+)
+def load_migration_data():
+    return pd.read_csv(
+        MIGRATION_PATH,
+        dtype={
+            "Dest County FIPS": "string",
+            "Origin County FIPS": "string",
+            "Dest State Code": "string",
+            "Dest County Code": "string",
+            "Origin State Code": "string",
+            "Origin County Code": "string"
+        },
+        compression="gzip"
     )
 
 
@@ -227,10 +231,20 @@ if run_analysis:
 
     with st.spinner("Calculating recruitment markets..."):
 
-        migration_df = load_migration_origins(
-            destination_state=destination_state,
-            destination_county=destination_county,
-            top_n=top_n_origins
+        migration_all = load_migration_data()
+
+        migration_df = (
+            migration_all[
+                migration_all["Dest County FIPS"].eq(
+                    destination_fips
+                )
+            ]
+            .sort_values(
+                "In-Migrants",
+                ascending=False
+            )   
+            .head(top_n_origins)
+            .reset_index(drop=True)
         )
 
 
