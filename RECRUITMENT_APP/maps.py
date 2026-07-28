@@ -431,7 +431,7 @@ def plot_soc_recruitment_network_map(
     marker_hover_text = [
     (
          f"<b>{row['Origin County']}, {row['Origin State']}</b>"
-        f"<br>Origin County FIPS: {row[origin_fips_col]}"
+        #f"<br>Origin County FIPS: {row[origin_fips_col]}"
         f"<br>2025 SOC Jobs: "
         f"{fmt_num(row.get('SOC 2025 Jobs'), 0)}"
         f"<br>In-Migrants: "
