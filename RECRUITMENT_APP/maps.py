@@ -290,12 +290,13 @@ def plot_soc_recruitment_network_map(
     # ------------------------------------------------------------
     hover_data = {
         "Origin State": True,
-        origin_fips_col: True,
+        #origin_fips_col: True,
         "SOC 2025 Jobs": ":,.0f",
-        "National Jobs Percentile": ":.2f",
-        "Migration Percentile": ":.2f",
-        "Recruitment Score": ":.2f",
-        "Recruitment Rank": ":,.0f"
+        "In-Migrants": ":,.0f",
+        #"National Jobs Percentile": ":.2f",
+        #"Migration Percentile": ":.2f",
+        #"Recruitment Score": ":.2f",
+        #"Recruitment Rank": ":,.0f"
     }
 
     optional_hover_formats = {
@@ -377,16 +378,18 @@ def plot_soc_recruitment_network_map(
             f"<br>Destination: {destination_name}"
             f"<br>2025 SOC Jobs: "
             f"{fmt_num(row.get('SOC 2025 Jobs'), 0)}"
-            f"<br>National Jobs Percentile: "
-            f"{fmt_num(row.get('National Jobs Percentile'), 1, percent=True)}"
+            #f"<br>National Jobs Percentile: "
+            #f"{fmt_num(row.get('National Jobs Percentile'), 1, percent=True)}"
+            f"<br>In-Migrants: "
+            f"{fmt_num(row.get('In-Migrants'), 0)}"
             f"<br>Average Hourly Earnings: "
             f"{fmt_num(row.get('Avg. Hourly Earnings'), 2, dollar=True)}"
-            f"<br>Migration Percentile: "
-            f"{fmt_num(row.get('Migration Percentile'), 1, percent=True)}"
-            f"<br>Recruitment Score: "
-            f"{fmt_num(row.get('Recruitment Score'), 3)}"
-            f"<br>Recruitment Rank: "
-            f"{fmt_num(row.get('Recruitment Rank'), 0)}"
+            #f"<br>Migration Percentile: "
+            #f"{fmt_num(row.get('Migration Percentile'), 1, percent=True)}"
+            #f"<br>Recruitment Score: "
+            #f"{fmt_num(row.get('Recruitment Score'), 3)}"
+            #f"<br>Recruitment Rank: "
+            #f"{fmt_num(row.get('Recruitment Rank'), 0)}"
         )
 
         fig.add_trace(
@@ -427,32 +430,34 @@ def plot_soc_recruitment_network_map(
 
     marker_hover_text = [
     (
-        f"<b>{row['Origin County']}, {row['Origin State']}</b>"
+         f"<b>{row['Origin County']}, {row['Origin State']}</b>"
         f"<br>Origin County FIPS: {row[origin_fips_col]}"
         f"<br>2025 SOC Jobs: "
         f"{fmt_num(row.get('SOC 2025 Jobs'), 0)}"
-        f"<br>National Jobs Percentile: "
-        f"{fmt_num(
-            row.get('National Jobs Percentile'),
-            2,
-            percent=True
-        )}"
-        f"<br>Migration Percentile: "
-        f"{fmt_num(
-            row.get('Migration Percentile'),
-            2,
-            percent=True
-        )}"
+        f"<br>In-Migrants: "
+        f"{fmt_num(row.get('In-Migrants'), 0)}"    
+        #f"<br>National Jobs Percentile: "
+        #f"{fmt_num(
+        #    row.get('National Jobs Percentile'),
+        #    2,
+        #    percent=True
+        #)}"
+        #f"<br>Migration Percentile: "
+        #f"{fmt_num(
+        #    row.get('Migration Percentile'),
+        #    2,
+        #    percent=True
+        #)}"
         f"<br>Median Hourly Earnings: "
         f"{fmt_num(
             row.get('Median Hourly Earnings'),
             2,
             dollar=True
         )}"
-        f"<br>Recruitment Score: "
-        f"{fmt_num(row.get('Recruitment Score'), 2)}"
-        f"<br>Recruitment Rank: "
-        f"{fmt_num(row.get('Recruitment Rank'), 0)}"
+        #f"<br>Recruitment Score: "
+        #f"{fmt_num(row.get('Recruitment Score'), 2)}"
+        #f"<br>Recruitment Rank: "
+        #f"{fmt_num(row.get('Recruitment Rank'), 0)}"
     )
         for _, row in plot_df.iterrows()
     ]
