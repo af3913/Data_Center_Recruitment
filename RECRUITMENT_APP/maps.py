@@ -375,7 +375,7 @@ def plot_soc_recruitment_network_map(
 
         line_hover = (
             f"<b>{row['Origin County']}, {row['Origin State']}</b>"
-            f"<br>Destination: {destination_name}"
+            #f"<br>Destination: {destination_name}"
             f"<br>2025 SOC Jobs: "
             f"{fmt_num(row.get('SOC 2025 Jobs'), 0)}"
             #f"<br>National Jobs Percentile: "
