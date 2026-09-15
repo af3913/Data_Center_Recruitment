@@ -2,6 +2,6 @@ streamlit
 pandas
 numpy
 geopandas
-plotly
+plotly>=6.0,<7
 openpyxl
 pyarrow
