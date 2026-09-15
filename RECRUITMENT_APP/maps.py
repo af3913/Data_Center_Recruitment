@@ -318,7 +318,7 @@ def plot_soc_recruitment_network_map(
     # ------------------------------------------------------------
     # Base choropleth
     # ------------------------------------------------------------
-    fig = px.choropleth_mapbox(
+    fig = px.choropleth_map(
         map_gdf,
         geojson=geojson,
         locations=county_col,
