@@ -335,7 +335,7 @@ def plot_soc_recruitment_network_map(
             color_min,
             color_max
         ),
-        mapbox_style="carto-positron",
+        mapbox_style="open-street-map",
         center={
             "lat": 39.5,
             "lon": -98.35
